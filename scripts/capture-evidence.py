@@ -43,13 +43,6 @@ with sync_playwright() as p:
     page.goto('http://localhost:8081/service/rest/v1/search/assets?repository=maven-snapshots&group=com.devops.lab7&name=ci-demo')
     shot(page, '07-nexus-artifact.png')
 
-    sonar_context = browser.new_context(
-        viewport={'width': 1440, 'height': 1100},
-        http_credentials={'username': 'admin', 'password': credentials['sonarPassword']},
-    )
-    page = sonar_context.new_page()
-    page.goto('http://localhost:9000/api/measures/component?component=devops-lab7&metricKeys=bugs,vulnerabilities,code_smells,coverage,ncloc')
-    shot(page, '08-sonarqube-dashboard.png')
     browser.close()
 
 docker_ps = subprocess.run(['docker', 'ps', '--format', 'table {{.Names}}\\t{{.Status}}\\t{{.Ports}}'], check=True, capture_output=True, text=True).stdout
