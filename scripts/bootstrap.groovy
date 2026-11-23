@@ -41,7 +41,7 @@ sonar.save()
 def settings = new File('/var/jenkins_home/lab7-maven-settings.xml').text
 GlobalConfigFiles.get().save(new MavenSettingsConfig('maven-settings-nexus', 'Lab7 Nexus settings', 'Environment-bound credentials', settings, false, []))
 def job = j.getItem('DevOps-Lab7-CI-Pipeline') ?: j.createProject(WorkflowJob.class, 'DevOps-Lab7-CI-Pipeline')
-def scm = new GitSCM([new UserRemoteConfig('https://github.com/' + secrets.githubUser + '/devops-lab7-ci-demo.git', null, null, 'github-credentials')], [new BranchSpec('*/main')], false, [], null, null, [])
+def scm = new GitSCM([new UserRemoteConfig('https://github.com/' + secrets.githubUser + '/devops-lab7-ci-NongVanNguyen.git', null, null, 'github-credentials')], [new BranchSpec('*/main')], false, [], null, null, [])
 job.setDefinition(new CpsScmFlowDefinition(scm, 'sample-java-app/Jenkinsfile'))
 job.save()
 jenkins.model.JenkinsLocationConfiguration.get().setUrl('http://localhost:8080/')

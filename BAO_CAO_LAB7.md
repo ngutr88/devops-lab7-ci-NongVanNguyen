@@ -27,7 +27,7 @@
 
 ## Link và cấu hình
 
-- GitHub: `https://github.com/ngutr88/devops-lab7-ci-demo`
+- GitHub: `https://github.com/ngutr88/devops-lab7-ci-NongVanNguyen`
 - Jenkins: `http://localhost:8080`
 - Nexus: `http://localhost:8081`
 - SonarQube: `http://localhost:9000`

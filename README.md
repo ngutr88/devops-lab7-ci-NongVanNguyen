@@ -44,7 +44,7 @@ docker compose ps
 | Nexus | http://localhost:8081 |
 | SonarQube | http://localhost:9000 |
 
-Job: `DevOps-Lab7-CI-Pipeline`; Git repository: `https://github.com/ngutr88/devops-lab7-ci-demo.git`; branch `main`; script path `sample-java-app/Jenkinsfile`.
+Job: `DevOps-Lab7-CI-Pipeline`; Git repository: `https://github.com/ngutr88/devops-lab7-ci-NongVanNguyen.git`; branch `main`; script path `sample-java-app/Jenkinsfile`.
 
 Các stage: Checkout → Build → Test → SonarQube Analysis → Package → Publish to Nexus.
 
