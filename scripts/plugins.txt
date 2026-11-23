@@ -1,0 +1,10 @@
+workflow-aggregator
+git
+github
+pipeline-stage-view
+sonar
+nexus-artifact-uploader
+config-file-provider
+ws-cleanup
+timestamper
+matrix-auth

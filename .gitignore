@@ -4,3 +4,5 @@
 *.zip
 evidence/
 Lab7_HuongDan.md
+__pycache__/
+*.pyc
