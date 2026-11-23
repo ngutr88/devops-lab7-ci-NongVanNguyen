@@ -27,7 +27,7 @@ python scripts/configure-services.py
 if ($LASTEXITCODE -ne 0) { throw 'Service configuration failed' }
 Docker-Checked cp scripts/plugins.txt lab7-jenkins:/tmp/lab7-plugins.txt
 Docker-Checked exec lab7-jenkins jenkins-plugin-cli --plugin-file /tmp/lab7-plugins.txt --plugin-download-directory /var/jenkins_home/plugins
-Docker-Checked cp .tools/apache-maven-3.9.9 lab7-jenkins:/opt/maven
+Docker-Checked cp .tools/apache-maven-3.9.9/. lab7-jenkins:/opt/maven
 Docker-Checked exec -u root lab7-jenkins chmod +x /opt/maven/bin/mvn
 Docker-Checked cp .private/services.json lab7-jenkins:/var/jenkins_home/lab7-secrets.json
 Docker-Checked cp config/maven-settings-nexus.xml lab7-jenkins:/var/jenkins_home/lab7-maven-settings.xml

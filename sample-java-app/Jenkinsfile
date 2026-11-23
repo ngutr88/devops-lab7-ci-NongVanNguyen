@@ -112,14 +112,18 @@ pipeline {
                         )
                     ]) {
 
-                        configFileProvider([
-                            configFile(
-                                fileId: 'maven-settings-nexus',
-                                variable: 'MAVEN_SETTINGS'
-                            )
-                        ]) {
-
-                            sh '''
+                        sh '''
+                                cat > nexus-settings.xml <<EOF
+                                <settings>
+                                  <servers>
+                                    <server>
+                                      <id>nexus</id>
+                                      <username>${NEXUS_USERNAME}</username>
+                                      <password>${NEXUS_PASSWORD}</password>
+                                    </server>
+                                  </servers>
+                                </settings>
+                                EOF
                                 echo "=== CHECK ARTIFACT ==="
 
                                 ls -lh target/
@@ -127,7 +131,7 @@ pipeline {
                                 echo "=== PUBLISH TO NEXUS ==="
 
                                 mvn deploy:deploy-file \
-                                    -s "$MAVEN_SETTINGS" \
+                                    -s nexus-settings.xml \
                                     -DgroupId=com.devops.lab7 \
                                     -DartifactId=ci-demo \
                                     -Dversion=1.0.0-SNAPSHOT \
@@ -136,7 +140,6 @@ pipeline {
                                     -Durl=http://lab7-nexus:8081/repository/maven-snapshots/ \
                                     -DrepositoryId=nexus
                             '''
-                        }
                     }
                 }
             }
