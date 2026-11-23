@@ -36,6 +36,10 @@ values.update(githubUser='ngutr88', githubToken=credential['password'])
 path.write_text(json.dumps(values), encoding='utf-8')
 nexus_initial = subprocess.check_output(['docker', 'exec', 'lab7-nexus', 'cat', '/nexus-data/admin.password'], text=True).strip()
 request('http://localhost:8081/service/rest/v1/security/users/admin/change-password', 'admin', nexus_initial, values['nexusPassword'], 'PUT', 'text/plain')
+eula = request('http://localhost:8081/service/rest/v1/system/eula', 'admin', values['nexusPassword'])
+if not eula['accepted']:
+    eula['accepted'] = True
+    request('http://localhost:8081/service/rest/v1/system/eula', 'admin', values['nexusPassword'], json.dumps(eula), 'POST', 'application/json')
 request('http://localhost:8081/service/rest/v1/security/anonymous', 'admin', values['nexusPassword'], json.dumps({'enabled': True, 'userId': 'anonymous', 'realmName': 'NexusAuthorizingRealm'}), 'PUT', 'application/json')
 repositories = request('http://localhost:8081/service/rest/v1/repositories', 'admin', values['nexusPassword'])
 assert any(r['name'] == 'maven-snapshots' for r in repositories), 'maven-snapshots repository missing'
