@@ -113,17 +113,7 @@ pipeline {
                     ]) {
 
                         sh '''
-                                cat > nexus-settings.xml <<EOF
-                                <settings>
-                                  <servers>
-                                    <server>
-                                      <id>nexus</id>
-                                      <username>${NEXUS_USERNAME}</username>
-                                      <password>${NEXUS_PASSWORD}</password>
-                                    </server>
-                                  </servers>
-                                </settings>
-                                EOF
+                                printf '<settings><servers><server><id>nexus</id><username>%s</username><password>%s</password></server></servers></settings>' "$NEXUS_USERNAME" "$NEXUS_PASSWORD" > nexus-settings.xml
                                 echo "=== CHECK ARTIFACT ==="
 
                                 ls -lh target/
