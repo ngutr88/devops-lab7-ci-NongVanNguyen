@@ -23,6 +23,8 @@
 | Nexus | `ci-demo-1.0.0-20261123.032534-1.jar` trong `maven-snapshots` |
 | SonarQube | Project `devops-lab7`; 0 bugs, 0 vulnerabilities, 0 code smells |
 
+**Xác nhận:** Pipeline Jenkins build `#4` là lần chạy nộp bài thành công đầy đủ các stage.
+
 ## Link và cấu hình
 
 - GitHub: `https://github.com/ngutr88/devops-lab7-ci-demo`
